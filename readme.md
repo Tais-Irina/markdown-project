@@ -96,7 +96,7 @@ B --> D["git commit -m "Comments about commit""];
 
 ```mermaid
 graph LR;
-Save file.txt --> git add file.txt --> "git commit -m "Comments about commit"";
+"Save file.txt" --> "git add file.txt" --> "git commit -m "Comments about commit"";
 ``` 
 
 ### Просматриваем историю коммитов

@@ -80,11 +80,24 @@ $ git commit -m 'Мой первый коммит!'
 Обычно в таком сообщении поясняется, в чём именно состояли изменения. Оно пишется после ключа -m в кавычках.
 
 
+Отобразим процесс коммита сехмой mermaid:
+* flowchart TD блок-схема программы
+* graph LR; - обычная графичесская схема
+
+Вертикальная блок схема
+
 ```mermaid
 flowchart TD
 A[Save file.txt] --> B[git add file.txt];
-B ----> D["git commit -m "Comments about commit""];
-```  
+B --> D["git commit -m "Comments about commit""];
+``` 
+
+Горизонтальная блок схема
+
+```mermaid
+graph LR;
+Save file.txt --> git add file.txt --> "git commit -m "Comments about commit"";
+``` 
 
 ### Просматриваем историю коммитов
 ## Создаем удаленный репозиторий

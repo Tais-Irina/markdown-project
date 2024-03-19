@@ -79,12 +79,12 @@ $ git commit -m 'Мой первый коммит!'
 Ключ -m присваивает коммиту сообщение.
 Обычно в таком сообщении поясняется, в чём именно состояли изменения. Оно пишется после ключа -m в кавычках.
 
-How to commit
 
 ```mermaid
 flowchart TD
-A[How to commit] --> B[git add];
-``` 
+A[Save file.txt] --> B[git add file.txt];
+B ----> D[git commit -m "Comments about commit"];
+```  
 
 ### Просматриваем историю коммитов
 ## Создаем удаленный репозиторий

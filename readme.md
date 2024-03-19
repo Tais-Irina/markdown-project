@@ -83,7 +83,7 @@ $ git commit -m 'Мой первый коммит!'
 ```mermaid
 flowchart TD
 A[Save file.txt] --> B[git add file.txt];
-B ----> D[git commit -m "Comments about commit"];
+B ----> D["git commit -m "Comments about commit""];
 ```  
 
 ### Просматриваем историю коммитов

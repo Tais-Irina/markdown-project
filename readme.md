@@ -457,7 +457,7 @@ flowchart TD
 A["untracked (неотслеживаемый)"] -- git add --> B["staged (в списке на коммит)"];
 C["modified (измененный)"] -- git add --> B;
 B -- git commit --> D["tacked (отслеживаемый)"]
-D -- changes --> C
+D -- изменения --> C
 ```
 
 1. Файл только что создали. Git ещё не отслеживает содержимое этого файла. Состояние: untracked.

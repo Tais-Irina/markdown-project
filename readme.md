@@ -454,9 +454,9 @@ Git сообщит об этом с помощью статуса modified: файл изменён относительно той ве
 
 ```mermaid
 flowchart TD
-A['untracked (неотслеживаемый)'] -- git add --> B['staged (в списке на коммит)'];
-C['modified (измененный)'] -- git add --> B;
-B -- git commit --> D['tacked (отслеживаемый)']
+A["untracked (неотслеживаемый)"] -- git add --> B["staged (в списке на коммит)"];
+C["modified (измененный)"] -- git add --> B;
+B -- git commit --> D["tacked (отслеживаемый)"]
 В -- changes --> C
 ```
 

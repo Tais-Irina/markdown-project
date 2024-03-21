@@ -639,3 +639,25 @@ git push --force origin master
 1. Нажмите клавишу Esc.
 2. Наберите последовательность символов :qa!.
 3. Нажмите Enter.
+
+### «Откатить» случайные изменения файла — git restore <file>
+
+Может быть так, что вы случайно изменили файл, который не планировали. Теперь он отображается в Changes not staged for commit (modified). Чтобы вернуть всё «как было», можно выполнить команду git restore <file>.
+
+```
+# случайно изменили файл example.txt
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+          modified:   example.txt
+
+$ git restore example.txt
+$ git status
+On branch main
+nothing to commit, working tree clean 
+```
+
+Изменения в файле «откатятся» до последней версии, которая была сохранена через git commit или git add.
+

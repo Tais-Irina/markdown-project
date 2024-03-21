@@ -570,3 +570,66 @@ $ git commit --amend -m "Добавить главную страницу и стили"
 $ git log --oneline
 a31fa24 Добавить главную страницу и стили 
 ````
+
+## Как откатиться назад, если «всё сломалось»
+
+### Убрать файлы из списка на коммит — **git restore --staged <file>**
+
+Допустим, вы создали или изменили какой-то файл и добавили его в список «на коммит» (staging area) с помощью git add, но потом передумали включать его туда. Убрать файл из staging поможет команда `git restore --staged <file>`(от англ. restore — «восстановить»).
+
+```
+$ touch example.txt # создали ненужный файл
+$ git add example.txt # добавили его в staged
+
+$ git status # проверили статус
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   example.txt
+
+$ git restore --staged example.txt
+$ git status # проверили статус
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        example.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+# файл example.txt из staged вернулся обратно в untracked 
+```
+
+Чтобы «сбросить» все файлы из staged обратно в untracked/modified, можно воспользоваться командой git restore --staged .: она сбросит всю текущую папку (.).
+
+### «Откатить» коммит — **git reset --hard <commit hash>**
+
+Иногда нужно «откатить» то, что уже было закоммичено, то есть вернуть состояние репозитория к более раннему. Для этого используют команду git reset --hard <commit hash> (от англ. reset  — «сброс», «обнуление» и hard — «суровый»).
+
+```
+$ git log --oneline # хеш можно найти в истории
+7b972f5 (HEAD -> master) style: добавить комментарии, расставить отступы
+b576d89 feat: добавить массив Expenses и цикл для добавления трат # вот сюда и вернёмся
+4b58962 refactor: разделить analyzeExpenses() на countSum() и saveExpenses()
+
+$ git reset --hard b576d89
+# теперь мы на этом коммите
+HEAD is now at b576d89 feat: добавить массив Expenses и цикл для добавления трат 
+```
+Теперь коммит b576d89 стал последним: вся дальнейшая разработка будет вестись от него. Файл также вернулся к тому состоянию, в котором был в момент этого коммита. А коммит 7b972f5 Git просто удалил. Это можно проверить, снова запросив лог. Он покажет следующее.
+
+```
+$ git log --oneline
+b576d89 (HEAD -> master) feat: добавить массив Expenses и цикл для добавления трат
+4b58962 refactor: разделить analyzeExpenses() на countSum() и saveExpenses() 
+```
+
+```mermaid
+graph LR
+A[HEAD 366c66b] --> B[HEAD 7b3f611] --> C[HEAD ebbf7ef];
+D["$ git reset --hard 7b3f611"] --> E[HEAD 7b3f611] --> H[HEAD ebbf7ef];
+```
+
+Чтобы откатить в удаленном репозитории версию коммита необходимо выполнить:
+
+```BASH
+git push --force origin master
+# или maim вместо master
+```
